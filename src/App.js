@@ -3,14 +3,19 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from "./views/Home";
 import About from "./views/About";
 
+import "./App.scss";
+
 const App = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-      </Switch>
-    </BrowserRouter>
+    <div className="test">
+      <h2>test</h2>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 
