@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import { Button } from 'antd';
 
 const Home = () => {
   return (
-    <div>
-      Home
-    </div>
+    <Fragment>
+      <h2>Home</h2>
+      <Button type="primary">Primary Button</Button>
+    </Fragment>
   )
 }
 

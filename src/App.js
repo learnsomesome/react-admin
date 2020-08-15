@@ -3,8 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from "./views/Home";
 import About from "./views/About";
 
-import "./App.scss";
-
 const App = () => {
   return (
     <div className="test">

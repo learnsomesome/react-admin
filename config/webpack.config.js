@@ -382,6 +382,12 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
+                  [
+                    "import",
+                    {
+                      libraryName: "antd", style: "css"
+                    }
+                  ]
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -463,11 +469,15 @@ module.exports = function(webpackEnv) {
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
                 'sass-loader'
-              ),
-              // Don't consider CSS imports dead code even if the
-              // containing package claims to have no side effects.
-              // Remove this when webpack adds a warning or an error for this.
-              // See https://github.com/webpack/webpack/issues/6571
+              ).concat({
+                loader: 'sass-resources-loader',
+                options: {
+                  resources: [
+                    // 这里按照你的文件路径填写
+                    path.resolve(__dirname, '../src/styles/main.scss')
+                  ]
+                }
+              }),
               sideEffects: true,
             },
             // Adds support for CSS Modules, but using SASS
@@ -483,7 +493,7 @@ module.exports = function(webpackEnv) {
                   },
                 },
                 'sass-loader'
-              ),
+              )
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
@@ -501,6 +511,7 @@ module.exports = function(webpackEnv) {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
             },
+            // sass-loader配置
             {
               test: /\.scss$/,
               loaders: ['style-loader', 'css-loader', 'sass-loader']
